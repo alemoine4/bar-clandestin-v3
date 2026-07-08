@@ -854,7 +854,7 @@ const GuestKiosk = ({ whiskies, guests, onChoose, onExit }) => {
 
   const handlePick = (whisky) => {
     onChoose(guestName.trim(), whisky.id);
-    setLastChoice({ name: guestName.trim(), whisky: whisky.name });
+    setLastChoice({ name: guestName.trim(), whisky: whisky.name, imageSrc: whisky.imageSrc });
     setStep('done');
   };
 
@@ -1138,7 +1138,18 @@ const GuestKiosk = ({ whiskies, guests, onChoose, onExit }) => {
 
           {step === 'done' && lastChoice && (
             <div className="animate-fadeIn py-10" role="status">
-              <CheckCircle2 size={64} className="mx-auto text-amber-400 mb-8" strokeWidth={1} aria-hidden="true" />
+              {lastChoice.imageSrc ? (
+                <img
+                  src={lastChoice.imageSrc}
+                  alt=""
+                  aria-hidden="true"
+                  width="140"
+                  height="420"
+                  className="h-40 md:h-48 w-auto mx-auto mb-6 object-contain drop-shadow-[0_10px_24px_rgba(0,0,0,0.7)]"
+                />
+              ) : (
+                <CheckCircle2 size={64} className="mx-auto text-amber-400 mb-8" strokeWidth={1} aria-hidden="true" />
+              )}
               <h1 className="text-4xl md:text-5xl font-thin text-[var(--whisky-cream)] font-serif mb-4">
                 C'est noté, <span className="text-[var(--whisky-gold)]">{lastChoice.name}</span> !
               </h1>
