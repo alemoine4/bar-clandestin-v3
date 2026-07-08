@@ -1119,8 +1119,8 @@ const GuestKiosk = ({ whiskies, guests, onChoose, onExit }) => {
                               alt=""
                               aria-hidden="true"
                               loading="lazy"
-                              width="140"
-                              height="420"
+                              width="512"
+                              height="768"
                               className="max-h-32 w-auto max-w-full object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.6)]"
                             />
                           </div>
@@ -1143,8 +1143,8 @@ const GuestKiosk = ({ whiskies, guests, onChoose, onExit }) => {
                   src={lastChoice.imageSrc}
                   alt=""
                   aria-hidden="true"
-                  width="140"
-                  height="420"
+                  width="512"
+                  height="768"
                   className="h-40 md:h-48 w-auto mx-auto mb-6 object-contain drop-shadow-[0_10px_24px_rgba(0,0,0,0.7)]"
                 />
               ) : (
