@@ -2430,12 +2430,9 @@ export default function WhiskyBarApp() {
 
                       <div className="hidden md:flex items-center gap-2">
                         {whisky.peatLevel > 0 ? (
-                           <div className="flex items-center gap-1 opacity-90 group-hover:opacity-100 transition-opacity" aria-label={`Tourbe ${whisky.peatLevel} sur 5`}>
-                             <Flame size={12} className="text-stone-300" aria-hidden="true" />
-                             <div className="flex gap-0.5" aria-hidden="true">
-                               {[...Array(Math.floor(whisky.peatLevel))].map((_, i) => <div key={i} className="w-1 h-3 bg-stone-500 rounded-sm"></div>)}
-                             </div>
-                           </div>
+                          <span className="inline-flex items-center gap-1.5 text-[11px] text-amber-400 font-bold uppercase tracking-wider">
+                            <Flame size={12} className="text-amber-400" aria-hidden="true" /> Tourbe {whisky.peatLevel}/5
+                          </span>
                         ) : <span className="text-[11px] text-stone-300 uppercase tracking-widest">Non tourbé</span>}
                       </div>
 
