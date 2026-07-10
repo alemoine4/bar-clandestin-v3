@@ -1089,42 +1089,41 @@ const GuestKiosk = ({ whiskies, guests, onChoose, onExit }) => {
                           : 'border-stone-600/60 bg-[var(--whisky-surface)] hover:border-amber-500 hover:bg-stone-800/60'
                       }`}
                     >
-                      <div className="flex gap-4 items-center">
+                      {/* Rangée haute : nom + méta à gauche, bouteille (ou pastille de robe en fallback) en haut à droite.
+                          Rangée basse : étiquettes sur TOUTE la largeur de la carte (l'image ne les comprime plus). */}
+                      <div className="flex gap-4 items-start mb-3">
                         <div className="flex-1 min-w-0">
                           {isCurrent && (
                             <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-amber-300 mb-2">
                               <CheckCircle2 size={14} aria-hidden="true" /> Ton choix actuel
                             </span>
                           )}
-                          <div className="flex items-center justify-between gap-3 mb-2">
-                            <span className="font-serif text-2xl text-stone-100 group-hover:text-amber-200 transition-colors">{w.name}</span>
-                            <ColorBadge color={w.color} />
-                          </div>
-                          <p className="text-sm text-stone-300 mb-3">{w.type} • {w.region}</p>
-                          <div className="flex items-center justify-between gap-3 flex-wrap">
-                            <span className="flex flex-wrap gap-1.5">
-                              {chips.map((c, i) => (
-                                <span key={i} className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs ${c.matched ? 'bg-amber-500/20 border-amber-500 text-amber-100 font-bold' : 'bg-stone-800/80 border-stone-600 text-stone-200'}`}>
-                                  <c.Icon size={13} strokeWidth={1.5} className={c.matched ? 'text-amber-300' : 'text-amber-300/80'} aria-hidden="true" /> {c.label}
-                                </span>
-                              ))}
-                            </span>
-                            {w.peatLevel > 0 && <span className="text-xs text-amber-400 font-bold uppercase tracking-wider">Tourbe {w.peatLevel}/5</span>}
-                          </div>
+                          <span className="block font-serif text-2xl text-stone-100 group-hover:text-amber-200 transition-colors mb-1">{w.name}</span>
+                          <p className="text-sm text-stone-300">{w.type} • {w.region}</p>
                         </div>
-                        {w.imageSrc && (
-                          <div className="shrink-0 w-16 sm:w-[72px] flex items-center justify-center">
-                            <img
-                              src={w.imageSrc}
-                              alt=""
-                              aria-hidden="true"
-                              loading="lazy"
-                              width="512"
-                              height="768"
-                              className="max-h-32 w-auto max-w-full object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.6)]"
-                            />
-                          </div>
+                        {w.imageSrc ? (
+                          <img
+                            src={w.imageSrc}
+                            alt=""
+                            aria-hidden="true"
+                            loading="lazy"
+                            width="512"
+                            height="768"
+                            className="shrink-0 h-20 w-auto object-contain drop-shadow-[0_6px_14px_rgba(0,0,0,0.6)]"
+                          />
+                        ) : (
+                          <ColorBadge color={w.color} />
                         )}
+                      </div>
+                      <div className="flex items-center justify-between gap-3 flex-wrap">
+                        <span className="flex flex-wrap gap-1.5">
+                          {chips.map((c, i) => (
+                            <span key={i} className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border text-xs ${c.matched ? 'bg-amber-500/20 border-amber-500 text-amber-100 font-bold' : 'bg-stone-800/80 border-stone-600 text-stone-200'}`}>
+                              <c.Icon size={13} strokeWidth={1.5} className={c.matched ? 'text-amber-300' : 'text-amber-300/80'} aria-hidden="true" /> {c.label}
+                            </span>
+                          ))}
+                        </span>
+                        {w.peatLevel > 0 && <span className="text-xs text-amber-400 font-bold uppercase tracking-wider">Tourbe {w.peatLevel}/5</span>}
                       </div>
                     </button>
                   );
@@ -2740,7 +2739,7 @@ export default function WhiskyBarApp() {
         </main>
 
         <footer className="mt-32 pt-12 border-t border-stone-700 text-center text-stone-300 transition-colors duration-300">
-          <p className="text-[10px] tracking-[0.3em] uppercase font-medium mb-2">Le Bar Clandestin • V2</p>
+          <p className="text-[10px] tracking-[0.3em] uppercase font-medium mb-2">Le Bar Clandestin</p>
           <p className="text-[10px] tracking-wider">
             L'abus d'alcool est dangereux pour la santé • À consommer avec modération
           </p>
